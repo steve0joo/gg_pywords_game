@@ -1,6 +1,7 @@
 from pygame import mixer
 import time
 import csv
+import os
 
 class WordGame:
     def __init__(self):
@@ -76,15 +77,24 @@ class WordGame:
 
     def saveScore(self, score_file, execution_time, correct):
         """게임에 걸린 시간과 맞춘 개수를 CSV 파일로 저장한다."""
-        header = ["게임 시간 (초)", "맞춘 개수"]
-        data = [
-            [f'{execution_time:.2f}', f'{correct}']
-        ]
+        # header = ["게임 시간 (초)", "맞춘 개수"]
+        # data = [
+        #     [f'{execution_time:.2f}', f'{correct}']
+        # ]
 
-        with open(score_file, 'w', newline='', encoding='utf8') as file:
-            writer = csv.writer(file)
-            writer.writerow(header)
-            writer.writerows(data)
+        # with open(score_file, 'w', newline='', encoding='utf8') as file:
+        #     writer = csv.writer(file)
+        #     writer.writerow(header)
+        #     writer.writerows(data)
+
+        os.makedirs("output", exist_ok=True)
+        result_path = "output/result.csv"
+        is_new_file = not os.path.exists(result_path) or os.path.getsize(result_path) == 0
+
+        with open(result_path, 'a', encoding='utf8') as f:
+            if is_new_file:
+                f.write("게임시간(초), 정답개수\n")
+            f.write(f"{execution_time:.2f} {correct}\n")
 
 
     def main(self):
