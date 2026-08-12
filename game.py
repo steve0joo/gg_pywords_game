@@ -72,7 +72,7 @@ data = [
     [f'{execution_time:.2f}', f'{correct}']
 ]
 
-with open('word_game_socre.csv', 'w', newline='', encoding='utf8') as file:
+with open('word_game_score.csv', 'w', newline='', encoding='utf8') as file:
     writer = csv.writer(file)
     writer.writerow(header)
     writer.writerows(data)
