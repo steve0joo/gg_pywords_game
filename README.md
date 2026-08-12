@@ -68,11 +68,30 @@ gg_pywords_game/
 
 ### 주요 함수
 
+`game.py`는 역할별 함수로 나뉘어 있고, `main()`이 전체 흐름을 담당합니다.
+
 | 함수 | 설명 |
 | --- | --- |
-| `wordLoad(answer, trial)` | 입력한 답과 정답을 비교해 정답이면 `1`, 오답이면 `0`을 반환 |
-| `gameRun()` | 목숨이 소진될 때까지 문제를 출제하고 총 정답 개수를 반환 |
+| `loadWords(word_file)` | 단어 목록 파일을 읽어 한 줄에 한 단어씩 리스트로 반환 |
+| `askWord(trial, word)` | 문제를 화면에 출력하고 사용자의 답을 입력받음 |
+| `wordLoad(answer, word)` | 입력한 답과 정답을 비교해 정답이면 `1`, 오답이면 `0`을 반환 |
+| `playSound(sound_file)` | 효과음을 재생하고 재생이 끝날 때까지 대기 |
+| `gameRun(words)` | 정해진 횟수만큼 문제를 출제하고 총 정답 개수를 반환 |
 | `scorePrint(correct)` | 정답 개수를 기준으로 합격/불합격을 출력 |
+| `saveScore(score_file, execution_time, correct)` | 소요 시간과 정답 개수를 CSV로 저장 |
+| `main()` | 단어 로딩 → 게임 진행 → 결과 출력 → CSV 저장 |
+
+### 설정 값
+
+`game.py` 상단의 상수를 수정해 게임 설정을 바꿀 수 있습니다.
+
+| 상수 | 기본값 | 설명 |
+| --- | --- | --- |
+| `LIFE` | `5` | 문제 출제 횟수 |
+| `PASS_SCORE` | `3` | 합격 기준 정답 개수 |
+| `SOUND_DELAY` | `1.0` | 효과음 재생을 기다리는 시간 (초) |
+| `WORD_FILE` | `data/word.txt` | 단어 목록 파일 경로 |
+| `SCORE_FILE` | `word_game_score.csv` | 결과 저장 파일 경로 |
 
 ## 결과 저장
 
