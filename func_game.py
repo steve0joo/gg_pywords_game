@@ -28,7 +28,7 @@ def loadWords(word_file):
         with open(word_file, "r", encoding="utf8") as f:
                 return [word.strip() for word in f.readlines()]
     except FileNotFoundError as err:
-        print("단어 목록 파일이 존재하지 않습니다.")
+        print(f"단어 목록 파일이 존재하지 않습니다. {err}")
     except Exception as e:
         print(f"예외가 발생했습니다. {e}")
 
