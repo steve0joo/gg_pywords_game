@@ -12,28 +12,28 @@ correct = 0;
 def wordLoad(answer, trial):
         if(answer != words[trial]):
             print("못 맞춰서~")
-            mixer.music.load('assets/bad.wav') # 단어를 맞췄을 때의 소리파일 로딩
+            mixer.music.load('assets/bad.wav') # 단어를 못 맞췄을 때의 소리파일 로딩
             mixer.music.play() # 소리 출력
-            time.sleep(1.0) 
+            time.sleep(1.0)
             return 0
+
+        mixer.music.load('assets/good.wav') # 단어를 맞췄을 때의 소리파일 로딩
+        mixer.music.play() # 소리 출력
+        time.sleep(1.0)
         return 1
 
 def gameRun():
     life = 5
-    trial = 1
+    trial = 0
     correct = 0
 
     while (life > 0):
         print("\n준비? 엔터를 입력하세요.\n")
-        print(f"Question #{trial}\n")
+        print(f"Question #{trial + 1}\n")
         print(words[trial])
         answer = input("")
 
         correct = correct + wordLoad(answer, trial)
-
-        mixer.music.load('assets/good.wav') # 단어를 맞췄을 때의 소리파일 로딩
-        mixer.music.play() # 소리 출력
-        time.sleep(1.0) 
 
         life = life - 1
         trial = trial + 1
