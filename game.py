@@ -1,5 +1,6 @@
 from pygame import mixer
 import time
+import csv
 
 mixer.init() # 초기화
 # mixer.music.load('assets/good.wav') # 단어를 맞췄을 때의 소리파일 로딩
@@ -45,7 +46,7 @@ def scorePrint(correct):
      else:
         print("\n불합격했습니다\n")
 
-        
+
 
 with open("data/word.txt", "r", encoding="utf8") as f:
     words = []
@@ -65,3 +66,13 @@ execution_time = end_time - start_time
 scorePrint(correct)
 
 print(f"게임 걸린시간: {execution_time:.2f} 초, 맞춘 개수 : {correct}개")
+
+header = ["게임 시간 (초)", "맞춘 개수"]
+data = [
+    [f'{execution_time:.2f}', f'{correct}']
+]
+
+with open('word_game_socre.csv', 'w', newline='', encoding='utf8') as file:
+    writer = csv.writer(file)
+    writer.writerow(header)
+    writer.writerows(data)
